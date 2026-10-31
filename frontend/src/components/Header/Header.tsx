@@ -1,9 +1,12 @@
 import "./Header.scss";
 import HeaderIcon from "../../assets/headerIcon.svg?react";
 import { NavLink } from "react-router-dom";
+import { useAuthStore } from "../../store/useAuthStore";
 
 export const Header = () => {
-  const isAuthanticated = true;
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const logout = useAuthStore((state) => state.logout);
+
   return (
     <>
       <header className="header">
@@ -12,7 +15,7 @@ export const Header = () => {
           <p className="header__logo--title">Awesome Store</p>
         </div>
 
-        {isAuthanticated && (
+        {isAuthenticated && (
           <div className="header__list">
           <NavLink 
             to='/users' 
@@ -32,7 +35,7 @@ export const Header = () => {
           >
             Orders
             </NavLink>
-            <p className="header__list--link">Logout</p>
+            <p className="header__list--link" onClick={() => void logout()}>Logout</p>
           <NavLink 
             to='/profile' 
             className={({ isActive }) => (isActive ? 'header__list--link active-link profile active-profile' : 'header__list--link profile')}

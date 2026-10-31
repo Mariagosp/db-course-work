@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { api } from '../api'
 import type { User, UsersResponse } from '../types/user'
 
 type UsersState = {
@@ -16,7 +17,7 @@ export const useUsersStore = create<UsersState>((set) => ({
     set({ loading: true, error: '' })
 
     try {
-      const response = await fetch('/api/users')
+      const response = await api('/api/users')
 
       if (!response.ok) {
         throw new Error(`Request failed: ${response.status}`)
