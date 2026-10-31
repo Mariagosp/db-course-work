@@ -1,9 +1,14 @@
+export enum RoleEnum {
+  ADMIN = 'ADMIN',
+  CUSTOMER = 'CUSTOMER',
+}
+
 export type User = {
   id: string
   email: string
   name: string
   phone: string
-  role: 'ADMIN' | 'CUSTOMER'
+  role: RoleEnum
   createdAt: string
   updatedAt: string
 }

@@ -1,23 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Table } from "../../components/Table/Table";
 import "./UsersPage.scss";
-import type { User, UsersResponse } from "../../types/user";
+import { useUsersStore } from "../../store/useUsersStore";
 
 export const UsersPage = () => {
-  const [users, setUsers] = useState<User[]>([]);
-  const [error, setError] = useState('')
+  const users = useUsersStore((state) => state.users)
+  const error = useUsersStore((state) => state.error)
+  const fetchUsers = useUsersStore((state) => state.fetchUsers)
 
   useEffect(() => {
-    fetch('/api/users')
-      .then(async (response) => {
-        if (!response.ok) {
-          throw new Error(`Request failed: ${response.status}`)
-        }
-        return response.json() as Promise<UsersResponse>
-      })
-      .then((body) => setUsers(body.data))
-      .catch((err: Error) => setError(err.message))
-  }, [])
+    void fetchUsers()
+  }, [fetchUsers])
+
   if (error) {
     return <p>{error}</p>
   }
