@@ -1,4 +1,5 @@
 import { Controller, Get, Param, Post, Body, Put, ParseUUIDPipe, Query, Delete } from '@nestjs/common';
+import { Public } from '../auth/public.decorator';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -18,6 +19,7 @@ export class UsersController {
     return this.usersService.findOne(id);
   }
 
+  @Public()
   @Post()
   create(@Body() dto: CreateUserDto) {
     return this.usersService.create(dto);
