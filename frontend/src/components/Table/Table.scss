@@ -1,0 +1,37 @@
+.products__table {
+  width: 100%;
+  border-collapse: collapse;
+  // border: 1px solid #ddd;
+  font-family: sans-serif;
+  font-size: 14px;
+
+  &--head {
+    // background-color: #f9f9f9;
+
+    &--item {
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid #353a46;
+      font-size: 16px;
+      font-family: "RobotoBold", sans-serif;
+      color: #000000;
+    }
+  }
+
+  &--body {
+    &--tr {
+      border-bottom: 1px solid #353a46;
+
+      &:hover {
+        background-color: #f5f5f5;
+      }
+
+      &--td {
+        padding: 12px 16px;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+        color: #000000;
+      }
+    }
+  }
+}
